@@ -1,22 +1,11 @@
-import 'package:appwrite/appwrite.dart';
+let sdk = new Appwrite();
 
-void main() { // Init SDK
-  Client client = Client();
-  Account account = Account(client);
-
-  client
+sdk
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-  ;
+    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
+;
 
-  Future result = account.createOAuth2Session(
-    provider: 'amazon',
-  );
+// Go to OAuth provider login page
+sdk.account.createOAuth2Session('amazon');
 
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
